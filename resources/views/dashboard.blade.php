@@ -6,12 +6,14 @@
     </x-slot>
 
     <div class="m-6">
-        <div class="w-full mb-4">
-            <a href="#" class="p-2 bg-green-400 rounded-lg">
-                Crear Post
-            </a>
+        <div class="w-full mb-2">
+            @hasanyrole('writer|admin')
+                <a href="#" class="p-2 bg-green-400 rounded">
+                    Crear Post
+                </a>
+            @endhasanyrole
         </div>
-        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                     <table class="min-w-full divide-y divide-gray-200">
@@ -32,7 +34,15 @@
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $post->id }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $post->title }}</td>
-                                    <td class="px-6 py-4 text-right text-sm">Edit Delete</td>
+                                    <td class="px-6 py-4 text-right text-sm">
+                                        @hasanyrole('editor|admin')
+                                            <a href="#" class="m-2 p-2 bg-gray-400 rounded">Editar</a>
+                                        @endhasanyrole
+                                        @hasanyrole('publisher|admin')
+                                            <a href="#" class="m-2 p-2 bg-blue-400 rounded">Publicar</a>
+                                            <a href="#" class="m-2 p-2 bg-red-400 rounded">Borrar</a>
+                                        @endhasanyrole
+                                    </td>
                                 </tr>
                             @endforeach
                             <!-- More items... -->
