@@ -18,25 +18,6 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-{{-- <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body> 
---}}
-
 <body class="antialiased bg-gray-100 dark:bg-gray-900 dark:text-gray-100">
     <div class="flex-col w-full md:flex md:flex-row md:min-h-screen">
         <div @click.away="open = false"
@@ -44,8 +25,7 @@
             x-data="{ open: false }">
             <div class="flex flex-row items-center justify-between flex-shrink-0 px-8 py-4">
                 <a href="#"
-                    class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark:text-white focus:outline-none focus:shadow-outline">Flowtrail
-                    UI</a>
+                    class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark:text-white focus:outline-none focus:shadow-outline">App Notas</a>
                 <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
                     <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
                         <path x-show="!open" fill-rule="evenodd"
@@ -95,6 +75,11 @@
                         </div>
                     </div>
                 </div>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-200 rounded-lg dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                    href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Salir</a>
+                </form>
             </nav>
         </div>
         <div class="w-full">
@@ -112,5 +97,24 @@
         </div>
     </div>
 </body>
+
+{{-- <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100">
+            @include('layouts.navigation')
+
+            <!-- Page Heading -->
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
+        </div>
+    </body> 
+--}}
 
 </html>
