@@ -7,11 +7,11 @@
 
     <div class="m-6">
         <div class="w-full mb-2">
-            @hasanyrole('writer|admin')
-                <a href="#" class="p-2 bg-green-400 rounded">
+            @can('write post')
+                <a href="{{ route('posts.create') }}" class="p-2 bg-green-400 rounded">
                     Crear Post
                 </a>
-            @endhasanyrole
+            @endcan
         </div>
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -35,13 +35,15 @@
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $post->id }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $post->title }}</td>
                                     <td class="px-6 py-4 text-right text-sm">
-                                        @hasanyrole('editor|admin')
-                                            <a href="#" class="m-2 p-2 bg-gray-400 rounded">Editar</a>
-                                        @endhasanyrole
-                                        @hasanyrole('publisher|admin')
+                                        @can('edit post')
+                                            <a href="{{ route('posts.edit', $post->id) }}" class="m-2 p-2 bg-gray-400 rounded">Editar</a>
+                                        @endcan
+                                        @can('publish post')
                                             <a href="#" class="m-2 p-2 bg-blue-400 rounded">Publicar</a>
+                                            @endcan
+                                        @can('delete post')    
                                             <a href="#" class="m-2 p-2 bg-red-400 rounded">Borrar</a>
-                                        @endhasanyrole
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
